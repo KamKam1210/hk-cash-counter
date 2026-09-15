@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#edf5ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07101d" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="簡單、快速的港幣紙幣與硬幣點算工具。" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>收銀點算</title>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="today">今日點算</p>
+          <h1>收銀點算</h1>
+        </div>
+        <button class="icon-button glass" id="theme-toggle" type="button" aria-label="切換顏色主題">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/><circle cx="12" cy="12" r="4"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.2 8.2 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
+        </button>
+      </header>
+
+      <section class="hero glass" aria-labelledby="total-label">
+        <div class="hero-label-row">
+          <span id="total-label">點算總額</span>
+          <span class="save-state" id="save-state" aria-live="polite">已自動儲存</span>
+        </div>
+        <p class="grand-total" id="grand-total" aria-live="polite">HK$0.00</p>
+        <div class="summary-row">
+          <div><span>紙幣</span><strong id="notes-total">HK$0.00</strong></div>
+          <div class="divider" aria-hidden="true"></div>
+          <div><span>硬幣</span><strong id="coins-total">HK$0.00</strong></div>
+        </div>
+      </section>
+
+      <section class="cash-section" aria-labelledby="notes-heading">
+        <div class="section-heading">
+          <div class="section-icon note-icon" aria-hidden="true">紙</div>
+          <div><h2 id="notes-heading">紙幣</h2><p>輸入每種紙幣的張數</p></div>
+        </div>
+        <div class="denomination-list glass" id="notes-list"></div>
+      </section>
+
+      <section class="cash-section" aria-labelledby="coins-heading">
+        <div class="section-heading">
+          <div class="section-icon coin-icon" aria-hidden="true">幣</div>
+          <div><h2 id="coins-heading">硬幣</h2><p>輸入每種硬幣的個數</p></div>
+        </div>
+        <div class="denomination-list glass" id="coins-list"></div>
+      </section>
+
+      <button class="reset-button" id="reset-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>
+        清除全部
+      </button>
+      <p class="privacy-note">資料只會儲存在這部裝置</p>
+    </main>
+
+    <dialog class="confirm-dialog glass" id="confirm-dialog">
+      <div class="dialog-icon" aria-hidden="true">↺</div>
+      <h2>清除今次點算？</h2>
+      <p>所有已輸入的張數及個數都會歸零。</p>
+      <div class="dialog-actions">
+        <button id="cancel-reset" type="button">取消</button>
+        <button class="danger" id="confirm-reset" type="button">清除</button>
+      </div>
+    </dialog>
+
+    <template id="denomination-template">
+      <div class="denomination-row">
+        <div class="denomination-name"><strong></strong><span></span></div>
+        <div class="stepper">
+          <button class="step-button minus" type="button" aria-label="減一">−</button>
+          <input inputmode="numeric" pattern="[0-9]*" type="text" value="0" aria-label="數量" />
+          <button class="step-button plus" type="button" aria-label="加一">＋</button>
+        </div>
+        <output class="line-total">HK$0.00</output>
+      </div>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

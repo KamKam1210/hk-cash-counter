@@ -1,0 +1,11 @@
+{
+  "name": "收銀點算",
+  "short_name": "點算",
+  "description": "港幣紙幣及硬幣點算工具",
+  "lang": "zh-Hant-HK",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#edf5ff",
+  "theme_color": "#087aff",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
