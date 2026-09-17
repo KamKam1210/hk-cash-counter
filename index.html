@@ -78,7 +78,18 @@
         <div class="denomination-name"><strong></strong><span></span></div>
         <div class="stepper">
           <button class="step-button minus" type="button" aria-label="減一">−</button>
-          <input inputmode="numeric" pattern="[0-9]*" type="text" value="0" aria-label="數量" />
+          <input
+            type="number"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            min="0"
+            max="99999"
+            step="1"
+            enterkeyhint="done"
+            autocomplete="off"
+            value="0"
+            aria-label="數量"
+          />
           <button class="step-button plus" type="button" aria-label="加一">＋</button>
         </div>
         <output class="line-total">HK$0.00</output>
