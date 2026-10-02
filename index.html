@@ -19,12 +19,26 @@
       <header class="topbar">
         <div>
           <p class="eyebrow" id="today">今日點算</p>
-          <h1>Peter唔想用腦計</h1>
+          <h1>Peter想大腦 騰出空間</h1>
         </div>
-        <button class="icon-button glass" id="theme-toggle" type="button" aria-label="切換顏色主題">
-          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/><circle cx="12" cy="12" r="4"/></svg>
-          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.2 8.2 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
-        </button>
+        <div class="theme-actions">
+          <button class="icon-button glass" id="color-toggle" type="button" aria-label="選擇主題顏色" aria-expanded="false" aria-controls="color-menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/><circle cx="9" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg>
+          </button>
+          <div class="color-menu glass" id="color-menu" role="group" aria-label="主題顏色" hidden>
+            <button class="color-swatch blue" type="button" data-accent="blue" aria-label="藍色" aria-pressed="true"></button>
+            <button class="color-swatch purple" type="button" data-accent="purple" aria-label="紫色" aria-pressed="false"></button>
+            <button class="color-swatch pink" type="button" data-accent="pink" aria-label="粉紅色" aria-pressed="false"></button>
+            <button class="color-swatch red" type="button" data-accent="red" aria-label="紅色" aria-pressed="false"></button>
+            <button class="color-swatch orange" type="button" data-accent="orange" aria-label="橙色" aria-pressed="false"></button>
+            <button class="color-swatch green" type="button" data-accent="green" aria-label="綠色" aria-pressed="false"></button>
+            <button class="color-swatch teal" type="button" data-accent="teal" aria-label="青色" aria-pressed="false"></button>
+          </div>
+          <button class="icon-button glass" id="theme-toggle" type="button" aria-label="切換顏色主題">
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/><circle cx="12" cy="12" r="4"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.2A8.2 8.2 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
+          </button>
+        </div>
       </header>
 
       <section class="hero glass" aria-labelledby="total-label">

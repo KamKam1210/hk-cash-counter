@@ -2,6 +2,7 @@ import { calculateLineCents, calculateTotals, denominations, formatHKD, sanitize
 
 const STORAGE_KEY = "hk-cash-counter-v1";
 const THEME_KEY = "hk-cash-counter-theme";
+const ACCENT_KEY = "hk-cash-counter-accent";
 const counts = loadCounts();
 const rows = new Map();
 
@@ -71,6 +72,21 @@ function setTheme(theme) {
   document.querySelector("#theme-toggle").setAttribute("aria-label", theme === "dark" ? "轉用淺色主題" : "轉用深色主題");
 }
 
+function setAccent(accent) {
+  document.documentElement.dataset.accent = accent;
+  localStorage.setItem(ACCENT_KEY, accent);
+  document.querySelectorAll(".color-swatch").forEach((swatch) => {
+    swatch.setAttribute("aria-pressed", String(swatch.dataset.accent === accent));
+  });
+}
+
+function updateClock() {
+  const now = new Date();
+  const date = new Intl.DateTimeFormat("zh-HK", { month: "long", day: "numeric", weekday: "long" }).format(now);
+  const time = new Intl.DateTimeFormat("zh-HK", { hour: "2-digit", minute: "2-digit", hour12: false }).format(now);
+  document.querySelector("#today").textContent = `${date}　${time}`;
+}
+
 renderGroup("notes", "張");
 renderGroup("coins", "個");
 updateTotals();
@@ -79,7 +95,34 @@ const storedTheme = localStorage.getItem(THEME_KEY);
 setTheme(storedTheme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
 document.querySelector("#theme-toggle").addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 
-document.querySelector("#today").textContent = new Intl.DateTimeFormat("zh-HK", { month: "long", day: "numeric", weekday: "long" }).format(new Date());
+setAccent(localStorage.getItem(ACCENT_KEY) || "blue");
+const colorToggle = document.querySelector("#color-toggle");
+const colorMenu = document.querySelector("#color-menu");
+colorToggle.addEventListener("click", () => {
+  colorMenu.hidden = !colorMenu.hidden;
+  colorToggle.setAttribute("aria-expanded", String(!colorMenu.hidden));
+});
+document.querySelectorAll(".color-swatch").forEach((swatch) => swatch.addEventListener("click", () => {
+  setAccent(swatch.dataset.accent);
+  colorMenu.hidden = true;
+  colorToggle.setAttribute("aria-expanded", "false");
+}));
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".theme-actions")) {
+    colorMenu.hidden = true;
+    colorToggle.setAttribute("aria-expanded", "false");
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    colorMenu.hidden = true;
+    colorToggle.setAttribute("aria-expanded", "false");
+    colorToggle.focus();
+  }
+});
+
+updateClock();
+setInterval(updateClock, 1000);
 
 const dialog = document.querySelector("#confirm-dialog");
 document.querySelector("#reset-button").addEventListener("click", () => dialog.showModal());
