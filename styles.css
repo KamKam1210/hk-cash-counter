@@ -81,7 +81,7 @@ button { -webkit-tap-highlight-color: transparent; user-select: none; -webkit-us
 .eyebrow { margin: 0 0 4px; color: var(--muted); font-size: 14px; font-weight: 600; }
 h1 { margin: 0; font-size: clamp(23px, 7vw, 30px); letter-spacing: -.04em; }
 .glass { background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(28px) saturate(155%); -webkit-backdrop-filter: blur(28px) saturate(155%); }
-.theme-actions { position: relative; display: flex; flex: 0 0 auto; gap: 10px; }
+.theme-actions { position: relative; display: grid; grid-template-columns: repeat(2, 48px); flex: 0 0 auto; gap: 10px; }
 .icon-button { width: 48px; height: 48px; border-radius: 50%; color: var(--text); display: grid; place-items: center; cursor: pointer; }
 .icon-button svg { width: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .color-menu { position: absolute; z-index: 10; top: 58px; right: 0; display: grid; grid-template-columns: repeat(4, 36px); gap: 10px; padding: 12px; border-radius: 20px; }

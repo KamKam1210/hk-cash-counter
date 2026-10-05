@@ -98,6 +98,7 @@ document.querySelector("#theme-toggle").addEventListener("click", () => setTheme
 setAccent(localStorage.getItem(ACCENT_KEY) || "blue");
 const colorToggle = document.querySelector("#color-toggle");
 const colorMenu = document.querySelector("#color-menu");
+const themeActions = document.querySelector(".theme-actions");
 colorToggle.addEventListener("click", () => {
   colorMenu.hidden = !colorMenu.hidden;
   colorToggle.setAttribute("aria-expanded", String(!colorMenu.hidden));
@@ -108,7 +109,7 @@ document.querySelectorAll(".color-swatch").forEach((swatch) => swatch.addEventLi
   colorToggle.setAttribute("aria-expanded", "false");
 }));
 document.addEventListener("click", (event) => {
-  if (!event.target.closest(".theme-actions")) {
+  if (!themeActions.contains(event.target)) {
     colorMenu.hidden = true;
     colorToggle.setAttribute("aria-expanded", "false");
   }
